@@ -1,4 +1,4 @@
-package cra_env_go
+package main
 
 import (
 	"fmt"
