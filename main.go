@@ -15,7 +15,7 @@ func main() {
 		pair := strings.Split(e, "=")
 		if strings.HasPrefix(pair[0], "REACT_APP_") {
 			value, _ := json.Marshal(pair[1])
-			sb.WriteString(fmt.Sprintf("process.env.%s = %s;\n", pair[0], value))
+			sb.WriteString(fmt.Sprintf("__ENV__.%s = %s;\n", pair[0], value))
 		}
 	}
 	vars := sb.String()
@@ -28,8 +28,7 @@ func main() {
 	replace := fmt.Sprintf(`
 	<head>
       <script>
-		process = process || {};
-		process.env = process.env || {};
+		__ENV__ = {}
 		%s
       </script>
 	`, vars)
